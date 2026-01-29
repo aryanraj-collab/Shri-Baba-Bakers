@@ -19,12 +19,16 @@
             /* Dark Mode (Default - Navy Royal) */
             --bg-body: #020617; 
             --bg-card: rgba(15, 23, 42, 0.6); 
-            --bg-header: rgba(2, 6, 23, 0.9);
+            --bg-header: rgba(2, 6, 23, 0.95);
             --text-main: #f1f5f9;
             --text-muted: #94a3b8;
             --logo-color: #c5a059;
             --border-color: rgba(197, 160, 89, 0.3);
             --hero-box: rgba(10, 16, 30, 0.7); 
+            
+            /* FEATURE STRIP - DARK MODE (Royal Navy Glass) */
+            --bg-strip: rgba(15, 23, 42, 0.6); 
+            
             --shadow: 0 10px 40px rgba(0,0,0,0.5);
             --map-filter: grayscale(100%) invert(92%) contrast(83%);
             
@@ -38,12 +42,16 @@
         body.light-mode {
             --bg-body: #e3d4c1; 
             --bg-card: #efe6da; 
-            --bg-header: rgba(227, 212, 193, 0.95);
+            --bg-header: rgba(227, 212, 193, 0.98);
             --text-main: #3e2b1e; 
             --text-muted: #6b5038;
-            --logo-color: #4a3728;
+            --logo-color: #4a3728; 
             --border-color: rgba(197, 160, 89, 0.6);
             --hero-box: rgba(62, 43, 30, 0.8);
+            
+            /* FEATURE STRIP - LIGHT MODE (Royal Chocolate - NO GREY) */
+            --bg-strip: linear-gradient(135deg, #3e2b1e, #5d4037);
+            
             --shadow: 0 10px 30px rgba(62, 43, 30, 0.15);
             --map-filter: sepia(50%) contrast(100%);
         }
@@ -152,7 +160,7 @@
         }
         .btn-royal:hover { background: var(--gold); color: black; box-shadow: 0 0 20px var(--gold); }
 
-        /* --- FEATURES STRIP --- */
+        /* --- 5. DUAL-THEME FEATURE STRIP --- */
         .hero-features-strip {
             position: relative; z-index: 5;
             width: 100%; max-width: 1400px;
@@ -161,11 +169,13 @@
         }
 
         .strip-card {
-            background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px);
-            border: 1px solid rgba(197, 160, 89, 0.3);
+            background: var(--bg-strip); /* DYNAMIC BACKGROUND */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(197, 160, 89, 0.4);
             padding: 30px 20px; text-align: center;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative; overflow: hidden; cursor: pointer;
+            border-radius: 4px;
         }
 
         .strip-card:hover {
@@ -176,7 +186,12 @@
         }
         
         .strip-card i, .strip-card h4, .strip-card p { transition: 0.3s; }
-        .strip-card:hover i, .strip-card:hover h4, .strip-card:hover p { color: #1a0f00; text-shadow: none; }
+        
+        .strip-card:hover i, 
+        .strip-card:hover h4, 
+        .strip-card:hover p {
+            color: #1a0f00; text-shadow: none;
+        }
 
         .strip-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 15px; display: block; }
         .strip-card h4 { font-family: var(--font-head); font-size: 1.1rem; margin-bottom: 10px; color: #fff; }
@@ -200,6 +215,7 @@
         .card {
             background: var(--bg-card); border: 1px solid var(--border-color);
             transition: 0.4s; position: relative; overflow: hidden;
+            border-radius: 15px; 
         }
         .card:hover { border-color: var(--gold); transform: translateY(-5px); }
 
@@ -240,6 +256,7 @@
             min-width: 350px; max-width: 350px; background: var(--bg-card); border: 1px solid var(--border-color);
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             scroll-snap-align: center; opacity: 0.6; transform: scale(0.9); position: relative; overflow: hidden;
+            border-radius: 15px;
         }
         .blog-card.active {
             opacity: 1; transform: scale(1.1); border-color: var(--gold);
@@ -265,6 +282,7 @@
         .map-container {
             margin-top: 60px; position: relative; width: 100%; height: 450px;
             border: 2px solid var(--gold); box-shadow: 0 0 30px rgba(197, 160, 89, 0.2); overflow: hidden;
+            border-radius: 15px;
         }
         .map-frame { width: 100%; height: 100%; border: 0; filter: var(--map-filter); transition: 0.5s; }
         .map-actions { display: flex; justify-content: center; gap: 20px; margin-top: 30px; }
@@ -272,10 +290,11 @@
             padding: 12px 30px; background: var(--bg-card); color: var(--gold);
             border: 1px solid var(--gold); font-family: var(--font-head); text-decoration: none;
             display: inline-flex; align-items: center; gap: 10px; transition: 0.3s;
+            border-radius: 30px;
         }
         .map-btn:hover { background: var(--gold); color: black; }
 
-        /* --- 9. NEW FOOTER (Rating & Reviews) --- */
+        /* --- 9. NEW FOOTER --- */
         footer { 
             border-top: 1px solid var(--border-color); padding: 80px 5% 40px 5%; 
             text-align: center; background: var(--bg-header); position: relative; overflow: hidden;
@@ -331,13 +350,12 @@
             scrollbar-width: thin; scrollbar-color: var(--gold) transparent;
         }
         
-        /* Royal Cart Item */
         .cart-item { 
             display: flex; align-items: center; 
             margin-bottom: 20px; padding: 15px; 
             background: rgba(255,255,255,0.03); 
             border: 1px solid var(--border-color); 
-            border-radius: 8px; transition: 0.3s;
+            border-radius: 12px; transition: 0.3s; 
         }
         .cart-item:hover { border-color: var(--gold); background: rgba(197, 160, 89, 0.1); transform: translateX(-5px); }
         
@@ -371,6 +389,7 @@
             cursor: pointer; transition: 0.4s; 
             box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
             animation: pulse-gold 2s infinite;
+            border-radius: 30px; 
         }
         .checkout-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.6); }
         
@@ -380,6 +399,7 @@
             100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
         }
 
+        /* --- ADMIN COMPONENTS --- */
         .modal-overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 5000;
             display: none; align-items: center; justify-content: center;
@@ -388,25 +408,74 @@
             background: var(--bg-card); border: 1px solid var(--gold); padding: 50px;
             width: 100%; max-width: 400px; text-align: center; position: relative;
             box-shadow: 0 0 50px rgba(212, 175, 55, 0.1);
+            border-radius: 20px;
         }
         .modal-input {
             width: 100%; padding: 12px; background: transparent; border: 1px solid #333;
             color: var(--gold); text-align: center; font-size: 1.2rem; margin-bottom: 20px; outline: none;
+            border-radius: 10px;
         }
         body.light-mode .modal-input { border-color: #aaa; color: #000; }
         .modal-btn {
             width: 100%; padding: 12px; background: transparent; border: 1px solid var(--gold);
             color: var(--gold); text-transform: uppercase; cursor: pointer; transition: 0.3s;
+            border-radius: 30px;
         }
         .modal-btn:hover { background: var(--gold); color: black; }
 
+        #admin-dash {
+            display: none; position: fixed; inset: 0; background: var(--bg-body); 
+            z-index: 10000; padding: 40px; overflow-y: auto;
+        }
+        .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .admin-exit-btn {
+            background-color: #000; color: #fff; border: 1px solid var(--gold);
+            padding: 10px 25px; font-family: var(--font-head); cursor: pointer; letter-spacing: 1px; transition: 0.3s;
+        }
+        .admin-exit-btn:hover { background-color: var(--gold); color: #000; }
+        
+        .adm-table { width: 100%; border-collapse: collapse; margin-top: 30px; }
+        .adm-table th { text-align: left; padding: 15px; border-bottom: 1px solid var(--gold); color: var(--gold); font-family: var(--font-head); }
+        .adm-table td { padding: 15px; border-bottom: 1px solid var(--border-color); color: var(--text-muted); }
+        
+        .admin-btn-edit { color: var(--gold); background: none; border: none; cursor: pointer; font-weight: bold; margin-right: 15px; }
+        .admin-btn-delete { color: #ef4444; background: none; border: none; cursor: pointer; font-weight: bold; }
+
+        /* --- MOBILE POLISH & RESPONSIVENESS --- */
         @media(max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
+            /* 1. GAP FIX: Push Hero Content down */
+            .hero { padding-top: 180px; } 
+            
+            /* 2. HEADER POLISH */
+            .logo { padding: 5px 12px; border-width: 1px; }
+            .logo h1 { font-size: 1.1rem; letter-spacing: 1px; }
+            
+            /* 3. HERO CONTENT */
+            .hero h1 { font-size: 2.2rem; line-height: 1.2; margin-bottom: 15px; }
+            .hero h2 { font-size: 0.8rem; letter-spacing: 3px; }
+            .hero-box { padding: 30px 15px; width: 90%; }
+
+            /* 4. FEATURE STRIP FIX */
+            .hero-features-strip { margin-top: 40px; gap: 15px; }
+            .strip-card { padding: 20px 15px; }
+            .strip-card i { font-size: 2rem; }
+            .strip-card h4 { font-size: 1rem; }
+
+            /* 5. GRID & CARD FIXES */
             .grid { grid-template-columns: 1fr 1fr; gap: 15px; }
+            .card-info { padding: 15px 10px; }
+            .card-title { font-size: 1rem; }
+            .price { font-size: 1rem; }
+            .add-btn { padding: 6px 10px; font-size: 0.6rem; }
+
+            /* 6. BLOG & FOOTER */
             .blog-card { min-width: 85vw; max-width: 85vw; }
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 30px; }
             .f-col { text-align: center; }
             .rating-box { justify-content: center; }
+            
+            /* 7. CART */
+            .sidebar { width: 85%; }
         }
     </style>
 </head>
@@ -597,8 +666,7 @@
             <span class="sb-title">Your Tray</span>
             <i class="ri-close-line" style="font-size:1.5rem; cursor:pointer; color:var(--gold);" onclick="toggleCart()"></i>
         </div>
-        <div class="sb-body" id="cartItems">
-            </div>
+        <div class="sb-body" id="cartItems"></div>
         <div class="sb-foot">
             <div style="display:flex; justify-content:space-between; margin-bottom:20px; font-family:var(--font-head); color:var(--gold); font-size:1.2rem;">
                 <span>Total Tribute</span>
@@ -608,87 +676,102 @@
         </div>
     </div>
 
-    <footer>
-        <div class="footer-grid">
-            <div class="f-col">
-                <div class="logo" style="display:inline-block; border-color:var(--logo-color);">
-                    <h1 style="color:var(--logo-color);">Shri Baba</h1>
-                </div>
-                <p style="margin-top:20px; line-height:1.6; color:var(--text-muted);">Crafting moments of joy since 2010. Our legacy is baked into every layer.</p>
+    <div id="admin-dash">
+        <div style="max-width:1000px; margin:0 auto;">
+            <div class="admin-header">
+                <h2 style="font-family:var(--font-head); color:var(--gold); font-size:2rem;">Inventory Control</h2>
+                <button onclick="closeAdminDash()" class="admin-exit-btn">EXIT</button>
             </div>
-            
-            <div class="f-col" style="text-align:center;">
-                <div class="f-title">Royal Patronage</div>
-                <div class="rating-box">
-                    <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
-                    <span style="font-size:0.9rem; color:var(--text-muted); margin-left:10px;">(4.9/5 Excellence)</span>
-                </div>
-                <div class="review-text">"The most exquisite truffle cake I have ever tasted in Varanasi."</div>
-                <div class="review-author">- A Loyal Subject</div>
-            </div>
-
-            <div class="f-col" style="text-align:right;">
-                <div class="f-title">Join the Court</div>
-                <p style="color:var(--text-muted); margin-bottom:15px; font-size:0.9rem;">Subscribe for royal offers.</p>
-                <input type="email" placeholder="Your Email Address" style="padding:10px; background:transparent; border:1px solid var(--border-color); color:var(--gold); outline:none;">
-                <button style="padding:10px 20px; background:var(--gold); border:none; cursor:pointer; font-weight:bold;">Join</button>
-            </div>
+            <table class="adm-table">
+                <thead><tr><th>Name</th><th>Cat</th><th>Price</th><th>Action</th></tr></thead>
+                <tbody id="adminBody"></tbody>
+            </table>
         </div>
-        <p class="f-copy">© 2026 Shri Baba Bakers. A Legacy of Taste.</p>
-    </footer>
+    </div>
 
     <script>
         const WHATSAPP = "917905341569";
 
-        // --- BLOG SCROLL ANIMATION ---
-        const blogContainer = document.querySelector('.blog-wrapper');
-        const blogCards = document.querySelectorAll('.blog-card');
+        // --- 1. ADMIN LOGIC ---
+        function openLogin() { 
+            document.getElementById('loginModal').style.display = 'flex'; 
+            setTimeout(() => document.getElementById('adminPassInput').focus(), 100);
+        }
 
-        const highlightCenter = () => {
-            const center = blogContainer.scrollLeft + (blogContainer.offsetWidth / 2);
-            blogCards.forEach(card => {
-                const cardCenter = card.offsetLeft + (card.offsetWidth / 2);
-                const distance = Math.abs(center - cardCenter);
-                if (distance < 180) { 
-                    card.classList.add('active');
-                } else {
-                    card.classList.remove('active');
+        function closeLogin() { 
+            document.getElementById('loginModal').style.display = 'none'; 
+        }
+        
+        function attemptLogin() {
+            const passInput = document.getElementById('adminPassInput');
+            const pass = passInput.value.trim();
+
+            if(pass === "admin123") {
+                closeLogin();
+                const dash = document.getElementById('admin-dash');
+                dash.style.display = 'block';
+                renderAdmin();
+                passInput.value = "";
+            } else {
+                alert("Access Denied: Incorrect Passkey.");
+                passInput.value = "";
+                passInput.focus();
+            }
+        }
+
+        const passField = document.getElementById('adminPassInput');
+        if(passField) {
+            passField.addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    attemptLogin();
                 }
             });
-        };
-        blogContainer.addEventListener('scroll', highlightCenter);
-        setTimeout(highlightCenter, 100);
+        }
 
-        // --- THEME TOGGLE ---
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            const isLight = document.body.classList.contains('light-mode');
-            const icon = document.querySelector('.ri-sun-line, .ri-moon-line');
-            if(isLight) {
-                icon.classList.remove('ri-sun-line');
-                icon.classList.add('ri-moon-line');
-            } else {
-                icon.classList.remove('ri-moon-line');
-                icon.classList.add('ri-sun-line');
+        function closeAdminDash() { 
+            document.getElementById('admin-dash').style.display = 'none'; 
+            renderMenu('all'); 
+        }
+        
+        function renderAdmin() {
+            const b = document.getElementById('adminBody');
+            if(!b) return;
+            b.innerHTML = '';
+            
+            if(!products || !Array.isArray(products)) { products = db; }
+
+            products.forEach((p,i) => {
+                b.innerHTML += `<tr>
+                    <td>${p.name}</td>
+                    <td>${p.cat}</td>
+                    <td id="price-display-${i}">₹${p.p1}</td>
+                    <td>
+                        <button class="admin-btn-edit" onclick="editPrice(${i})">EDIT</button>
+                        <button class="admin-btn-delete" onclick="del(${i})">DELETE</button>
+                    </td>
+                </tr>`;
+            });
+        }
+
+        function editPrice(i) {
+            let newPrice = prompt("Enter new price for " + products[i].name, products[i].p1);
+            if(newPrice && !isNaN(newPrice)) {
+                products[i].p1 = parseInt(newPrice);
+                localStorage.setItem('shriBabaRoyalV11', JSON.stringify(products));
+                renderAdmin();
             }
         }
 
-        // --- PARTICLES ---
-        function initParticles() {
-            const container = document.getElementById('particles');
-            container.innerHTML = ''; 
-            for(let i=0; i<30; i++) {
-                let p = document.createElement('div');
-                p.className = 'particle';
-                p.style.left = Math.random() * 100 + '%';
-                p.style.animationDelay = Math.random() * 5 + 's';
-                p.style.animationDuration = (Math.random() * 5 + 10) + 's';
-                container.appendChild(p);
+        function del(i) { 
+            if(confirm("Permanently delete this item?")) {
+                products.splice(i,1); 
+                localStorage.setItem('shriBabaRoyalV11', JSON.stringify(products)); 
+                renderAdmin(); 
             }
         }
-        initParticles();
 
-        // --- DATA ---
+        // --- 2. DATA ---
         const db = [
             { id: 1, name: "Royal Pineapple", cat: "cake", type: "var", p1: 300, p2: 600, img: "royal-pineapple-cake.jpg" },
             { id: 2, name: "Gold Butterscotch", cat: "cake", type: "var", p1: 300, p2: 600, img: "butterscotch.jpg" },
@@ -727,13 +810,23 @@
             { id: 50, name: "Hot Dog", cat: "sides", type: "sng", p1: 50, img: "hotdog.jpg" }
         ];
 
-        let products = JSON.parse(localStorage.getItem('shriBabaRoyalV10')) || db;
+        let products;
+        try {
+            products = JSON.parse(localStorage.getItem('shriBabaRoyalV11')) || db;
+        } catch(e) {
+            products = db;
+        }
+        
         let cart = [];
 
         function renderMenu(filter, btn) {
             if(btn) { document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); }
             const grid = document.getElementById('menuGrid');
+            if(!grid) return;
             grid.innerHTML = '';
+            
+            if(!products) products = db;
+
             const filtered = filter === 'all' ? products : products.filter(p => p.cat === filter);
             
             filtered.forEach(p => {
@@ -774,23 +867,27 @@
         }
 
         function updCart() {
-            document.getElementById('cartCount').textContent = cart.length;
+            const cartCount = document.getElementById('cartCount');
+            if(cartCount) cartCount.textContent = cart.length;
+            
             const b = document.getElementById('cartItems');
-            b.innerHTML = '';
-            let t = 0;
-            cart.forEach((c,i) => {
-                t += parseInt(c.price);
-                b.innerHTML += `
-                    <div class="cart-item">
-                        <img src="${c.img}" class="cart-img-small">
-                        <div class="cart-details">
-                            <div class="cart-name">${c.name}</div>
-                            <div class="cart-price">₹${c.price}</div>
-                        </div>
-                        <i class="ri-delete-bin-line cart-remove" onclick="cart.splice(${i},1); updCart()"></i>
-                    </div>`;
-            });
-            document.getElementById('cartTotal').textContent = `₹${t}`;
+            if(b) {
+                b.innerHTML = '';
+                let t = 0;
+                cart.forEach((c,i) => {
+                    t += parseInt(c.price);
+                    b.innerHTML += `
+                        <div class="cart-item">
+                            <img src="${c.img}" class="cart-img-small">
+                            <div class="cart-details">
+                                <div class="cart-name">${c.name}</div>
+                                <div class="cart-price">₹${c.price}</div>
+                            </div>
+                            <i class="ri-delete-bin-line cart-remove" onclick="cart.splice(${i},1); updCart()"></i>
+                        </div>`;
+                });
+                document.getElementById('cartTotal').textContent = `₹${t}`;
+            }
         }
 
         function toggleCart() {
@@ -809,27 +906,47 @@
             window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(m)}`);
         }
 
-        function openLogin() { document.getElementById('loginModal').style.display = 'flex'; }
-        function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
-        
-        function attemptLogin() {
-            if(document.getElementById('adminPassInput').value === "admin123") {
-                closeLogin();
-                document.getElementById('admin-dash').style.display = 'block';
-                renderAdmin();
-            } else alert("Invalid Passkey");
-        }
-        function closeAdminDash() { document.getElementById('admin-dash').style.display = 'none'; renderMenu('all'); }
-        
-        function renderAdmin() {
-            const b = document.getElementById('adminBody');
-            b.innerHTML = '';
-            products.forEach((p,i) => {
-                b.innerHTML += `<tr><td>${p.name}</td><td>${p.cat}</td><td>₹${p.p1}</td><td><button style="color:#800000;" onclick="del(${i})">Delete</button></td></tr>`;
+        const blogContainer = document.querySelector('.blog-wrapper');
+        const blogCards = document.querySelectorAll('.blog-card');
+        const highlightCenter = () => {
+            if(!blogContainer) return;
+            const center = blogContainer.scrollLeft + (blogContainer.offsetWidth / 2);
+            blogCards.forEach(card => {
+                const cardCenter = card.offsetLeft + (card.offsetWidth / 2);
+                const distance = Math.abs(center - cardCenter);
+                if (distance < 180) { card.classList.add('active'); } else { card.classList.remove('active'); }
             });
+        };
+        if(blogContainer) {
+            blogContainer.addEventListener('scroll', highlightCenter);
+            setTimeout(highlightCenter, 100);
         }
-        function del(i) { products.splice(i,1); localStorage.setItem('shriBabaRoyalV10', JSON.stringify(products)); renderAdmin(); }
-        
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            const icon = document.querySelector('.ri-sun-line, .ri-moon-line');
+            if(icon) {
+                if(isLight) { icon.classList.remove('ri-sun-line'); icon.classList.add('ri-moon-line'); }
+                else { icon.classList.remove('ri-moon-line'); icon.classList.add('ri-sun-line'); }
+            }
+        }
+
+        function initParticles() {
+            const container = document.getElementById('particles');
+            if(!container) return;
+            container.innerHTML = ''; 
+            for(let i=0; i<30; i++) {
+                let p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDelay = Math.random() * 5 + 's';
+                p.style.animationDuration = (Math.random() * 5 + 10) + 's';
+                container.appendChild(p);
+            }
+        }
+        initParticles();
+
         function scrollToMenu() { document.getElementById('menu-anchor').scrollIntoView({ behavior: 'smooth' }); }
 
         renderMenu('all');
