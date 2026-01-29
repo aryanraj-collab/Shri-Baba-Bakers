@@ -26,7 +26,7 @@
             --border-color: rgba(197, 160, 89, 0.3);
             --hero-box: rgba(10, 16, 30, 0.7); 
             
-            /* FEATURE STRIP - DARK MODE (Royal Navy Glass) */
+            /* FEATURE STRIP - DARK MODE */
             --bg-strip: rgba(15, 23, 42, 0.6); 
             
             --shadow: 0 10px 40px rgba(0,0,0,0.5);
@@ -49,7 +49,7 @@
             --border-color: rgba(197, 160, 89, 0.6);
             --hero-box: rgba(62, 43, 30, 0.8);
             
-            /* FEATURE STRIP - LIGHT MODE (Royal Chocolate - NO GREY) */
+            /* FEATURE STRIP - LIGHT MODE (Royal Chocolate) */
             --bg-strip: linear-gradient(135deg, #3e2b1e, #5d4037);
             
             --shadow: 0 10px 30px rgba(62, 43, 30, 0.15);
@@ -169,7 +169,7 @@
         }
 
         .strip-card {
-            background: var(--bg-strip); /* DYNAMIC BACKGROUND */
+            background: var(--bg-strip); 
             backdrop-filter: blur(10px);
             border: 1px solid rgba(197, 160, 89, 0.4);
             padding: 30px 20px; text-align: center;
@@ -294,7 +294,7 @@
         }
         .map-btn:hover { background: var(--gold); color: black; }
 
-        /* --- 9. NEW FOOTER --- */
+        /* --- 9. NEW FOOTER (With Dynamic Ratings) --- */
         footer { 
             border-top: 1px solid var(--border-color); padding: 80px 5% 40px 5%; 
             text-align: center; background: var(--bg-header); position: relative; overflow: hidden;
@@ -307,7 +307,14 @@
         .f-title { font-family: var(--font-head); color: var(--gold); font-size: 1.2rem; margin-bottom: 20px; }
         
         .rating-box { display: flex; gap: 5px; align-items: center; margin-bottom: 10px; color: var(--gold); font-size: 1.2rem; }
-        .review-text { font-family: var(--font-script); font-size: 1.8rem; color: var(--text-main); line-height: 1.4; margin-bottom: 10px; }
+        .rating-box i { animation: twinkle 3s infinite ease-in-out; }
+        @keyframes twinkle { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+        .review-text { 
+            font-family: var(--font-script); font-size: 1.8rem; color: var(--text-main); 
+            line-height: 1.4; margin-bottom: 10px; min-height: 80px; /* Prevent jump */
+            transition: opacity 0.5s ease;
+        }
         .review-author { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; }
 
         .f-copy { margin-top: 60px; color: var(--text-muted); font-size: 0.8rem; letter-spacing: 1px; text-align: center; width: 100%; border-top: 1px solid var(--border-color); padding-top: 20px; }
@@ -450,8 +457,8 @@
             .logo { padding: 5px 12px; border-width: 1px; }
             .logo h1 { font-size: 1.1rem; letter-spacing: 1px; }
             
-            /* 3. HERO CONTENT */
-            .hero h1 { font-size: 2.2rem; line-height: 1.2; margin-bottom: 15px; }
+            /* 3. HERO CONTENT - BIGGER TITLE */
+            .hero h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 15px; }
             .hero h2 { font-size: 0.8rem; letter-spacing: 3px; }
             .hero-box { padding: 30px 15px; width: 90%; }
 
@@ -676,6 +683,35 @@
         </div>
     </div>
 
+    <footer>
+        <div class="footer-grid">
+            <div class="f-col">
+                <div class="logo" style="display:inline-block; border-color:var(--logo-color);">
+                    <h1 style="color:var(--logo-color);">Shri Baba</h1>
+                </div>
+                <p style="margin-top:20px; line-height:1.6; color:var(--text-muted);">Crafting moments of joy since 2010. Our legacy is baked into every layer.</p>
+            </div>
+            
+            <div class="f-col" style="text-align:center;">
+                <div class="f-title">Royal Patronage</div>
+                <div class="rating-box">
+                    <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                    <span style="font-size:0.9rem; color:var(--text-muted); margin-left:10px;">(4.9/5 Excellence)</span>
+                </div>
+                <div class="review-text" id="reviewText">"The most exquisite truffle cake I have ever tasted in Varanasi."</div>
+                <div class="review-author" id="reviewAuthor">- A Loyal Subject</div>
+            </div>
+
+            <div class="f-col" style="text-align:right;">
+                <div class="f-title">Join the Court</div>
+                <p style="color:var(--text-muted); margin-bottom:15px; font-size:0.9rem;">Subscribe for royal offers.</p>
+                <input type="email" placeholder="Your Email Address" style="padding:10px; background:transparent; border:1px solid var(--border-color); color:var(--gold); outline:none;">
+                <button style="padding:10px 20px; background:var(--gold); border:none; cursor:pointer; font-weight:bold;">Join</button>
+            </div>
+        </div>
+        <p class="f-copy">© 2026 Shri Baba Bakers. A Legacy of Taste.</p>
+    </footer>
+
     <div id="admin-dash">
         <div style="max-width:1000px; margin:0 auto;">
             <div class="admin-header">
@@ -692,7 +728,33 @@
     <script>
         const WHATSAPP = "917905341569";
 
-        // --- 1. ADMIN LOGIC ---
+        // --- 1. DYNAMIC REVIEWS ---
+        const reviews = [
+            { text: "\"The truffle cake is pure magic. Soft, rich, and absolutely divine.\"", author: "- Priya S." },
+            { text: "\"Best bakery in Varanasi. The paneer pizza is a must-try!\"", author: "- Rahul K." },
+            { text: "\"Ordered for my anniversary. The packaging was royal indeed.\"", author: "- Anjali M." },
+            { text: "\"Fresh, hot, and delicious. Shri Baba never disappoints.\"", author: "- Vikram R." }
+        ];
+        
+        let reviewIndex = 0;
+        function rotateReviews() {
+            const textBox = document.getElementById('reviewText');
+            const authorBox = document.getElementById('reviewAuthor');
+            
+            // Fade Out
+            textBox.style.opacity = 0;
+            
+            setTimeout(() => {
+                reviewIndex = (reviewIndex + 1) % reviews.length;
+                textBox.innerText = reviews[reviewIndex].text;
+                authorBox.innerText = reviews[reviewIndex].author;
+                // Fade In
+                textBox.style.opacity = 1;
+            }, 500);
+        }
+        setInterval(rotateReviews, 4000); // Change every 4 seconds
+
+        // --- 2. ADMIN LOGIC ---
         function openLogin() { 
             document.getElementById('loginModal').style.display = 'flex'; 
             setTimeout(() => document.getElementById('adminPassInput').focus(), 100);
@@ -771,7 +833,7 @@
             }
         }
 
-        // --- 2. DATA ---
+        // --- 3. DATA ---
         const db = [
             { id: 1, name: "Royal Pineapple", cat: "cake", type: "var", p1: 300, p2: 600, img: "royal-pineapple-cake.jpg" },
             { id: 2, name: "Gold Butterscotch", cat: "cake", type: "var", p1: 300, p2: 600, img: "butterscotch.jpg" },
